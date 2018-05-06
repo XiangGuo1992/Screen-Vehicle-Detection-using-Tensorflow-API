@@ -161,11 +161,16 @@ for image_folder in TEST_IMAGE_DIRS:
               use_normalized_coordinates=True,
               line_thickness=8)
           #write images
+          #保存识别结果图片
+          
           cv2.imwrite(output_image_path+image_folder+'\\'+image_path.split('\\')[-1],image_np)
           
           s_boxes = boxes[scores > 0.5]
           s_classes = classes[scores > 0.5]
           s_scores=scores[scores>0.5]
+          
+          #write table
+          #保存位置坐标结果到 .csv表格
           for i in range(len(s_classes)):
 
               newdata= pd.DataFrame(0, index=range(1), columns=range(7))
